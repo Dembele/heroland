@@ -21,7 +21,7 @@ void MapCreate()
 			for(int j=0; j<100; j++)
 				if (randomizer(100)>90) area[i][j]=8;
 		
-		/*for(int i=0; i<100; i++)
+		for(int i=0; i<100; i++)
 			for(int j=0; j<100; j++)
 			{
 				if(area[i][j]==1)area[i][j]='@';
@@ -32,6 +32,6 @@ void MapCreate()
 				if(area[i][j]==6)area[i][j]='!';
 				if(area[i][j]==7)area[i][j]='~';
 				if(area[i][j]==8)area[i][j]='%';
-			}*/
+			}
 }
 
