@@ -1,5 +1,6 @@
 void Load_char()
 {
+	saveslot=slot;
 	string save="save_";
 	if(slot==0)save.append("0");
 	if(slot==1)save.append("1");

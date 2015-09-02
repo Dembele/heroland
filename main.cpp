@@ -214,6 +214,7 @@ int main()
 		hp=max_hp;
 		MapCreate();
 		SaveGame();
+		saveslot=slot;
 	}
 	if(slot==1)Load_menu();
 	while(hp>0)
@@ -236,7 +237,33 @@ int main()
 				if(x<99)x++;
 			break;
 			case 'm':
-				
+				switch(getch())
+				{
+					int done=0;
+					while(done!=1)
+					{
+						case 'w':
+							if(slot==0)slot=3;
+							else slot++;
+						break;
+						case 's':
+							if(slot==3)slot=0;
+							else slot--;
+						break;
+						case 'd':
+							
+						break;
+						case 's':
+							done=1;
+						break;
+					}
+				}
+			break;
+			case 'l':
+				Load_menu();
+			break;
+			case 'p':
+				SaveGame();
 			break;
 		}
 	}
