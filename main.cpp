@@ -48,94 +48,121 @@ void levelup()
 	stats+=3;
 }
 
-void Map_Show(){	
+void Map_Show()
+{	
 	temp = area[y][x];
 	area[y][x] = 'X';
-	if (x > 14 && y > 7 && x < 86 && y < 93){							//центр
-		for (int i = y + 7; i != y - 7; i--) {
+	if (x > 14 && y > 7 && x < 86 && y < 93)
+	{							//центр
+		for (int i = y + 7; i != y - 7; i--)
+		{
 			cout.width(width-30);
 			cout<<right;												// i = вверх/вниз у
-			for (int j = x - 15; j != x + 15; j++) {					// j = вправо/влево х
+			for (int j = x - 15; j != x + 15; j++)
+			{					// j = вправо/влево х
 				cout << area[i][j];
 			}
 			cout << endl;
 		}
 	}
-	if (x <= 14 && y <= 7){											//нижний левый угол
-		for (int i = 13; i >= 0; i--) {
+	if (x <= 14 && y <= 7)
+	{											//нижний левый угол
+		for (int i = 13; i >= 0; i--)
+		{
 			cout.width(width-30);
 			cout<<right;	
-			for (int j = 0; j <= 30; j++) {
+			for (int j = 0; j <= 30; j++)
+			{
 				cout << area[i][j];
 			}
 			cout << endl;
 		}
 	}
-	if (x <= 14 && y > 7 && y < 93){								// центр слева
-		for (int i = y+7; i != y-7; i--) {
+	if (x <= 14 && y > 7 && y < 93)
+	{								// центр слева
+		for (int i = y+7; i != y-7; i--)
+		{
 			cout.width(width-30);
 			cout<<right;	
-			for (int j = 0; j != 30; j++) {
+			for (int j = 0; j != 30; j++)
+			{
 				cout << area[i][j];
 			}
 			cout << endl;
 		}
 	}
-	if (x <= 14 && y >= 93){										// верх слева угол
-		for (int i = 100; i != 86; i--) {
+	if (x <= 14 && y >= 93)
+	{										// верх слева угол
+		for (int i = 100; i != 86; i--)
+		{
 			cout.width(width-30);
 			cout<<right;	
-			for (int j = 0; j != 30; j++) {
+			for (int j = 0; j != 30; j++)
+			{
 				cout << area[i][j];
 			}
 			cout << endl;
 		}
 	}
-	if (x > 14 && y >= 93 && x<86){								//верх центр
-		for (int i = 100; i != 86; i--) {
+	if (x > 14 && y >= 93 && x<86)
+	{								//верх центр
+		for (int i = 100; i != 86; i--)
+		{
 			cout.width(width-30);
 			cout<<right;		
-			for (int j = x - 15; j != x + 15; j++) {
+			for (int j = x - 15; j != x + 15; j++)
+			{
 				cout << area[i][j];
 			}
 			cout << endl;
 		}
 	}
 	if (x >= 86 && y >= 93){											//верх справа угол
-		for (int i = 100; i != 86; i--) {
+		for (int i = 100; i != 86; i--)
+		{
 			cout.width(width-30);
 			cout<<right;	
-			for (int j = 70; j <= 100; j++) {
+			for (int j = 70; j <= 100; j++)
+			{
 				cout << area[i][j];
 			}
 			cout << endl;
 		}
 	}
-	if (x >= 86 && y < 93 && y>7){									//центр справа
-		for (int i = y+7; i != y-7; i--) {
+	if (x >= 86 && y < 93 && y>7)
+	{									//центр справа
+		for (int i = y+7; i != y-7; i--)
+		{
 			cout.width(width-30);
 			cout<<right;	
-			for (int j = 70; j <= 100; j++) {
+			for (int j = 70; j <= 100; j++)
+			{
 				cout << area[i][j];
 			}
 			cout << endl;
 		}
 	}
-	if (x >= 86 && y <= 7){											//низ справа угол
-		for (int i = 13; i >= 0; i--) {
+	if (x >= 86 && y <= 7)
+	{											//низ справа угол
+		for (int i = 13; i >= 0; i--)
+		{
 			cout.width(width-30);
 			cout<<right;	
-			for (int j = 70; j <= 100; j++) {
+			for (int j = 70; j <= 100; j++)
+			{
 				cout << area[i][j];
 			}
 			cout << endl;
 		}
 	}
-	if (x > 14 && y <= 7 && x<86){											//низ центр
-		for (int i = 13; i >= 0; i--) {
+	if (x > 14 && y <= 7 && x<86)
+	{											//низ центр
+		for (int i = 13; i >= 0; i--)
+		{
 			cout.width(width-30);
 			cout<<right;	
-			for (int j = x-15; j != x+15; j++) {
+			for (int j = x-15; j != x+15; j++)
+			{
 				cout << area[i][j];
 			}
 			cout << endl;
@@ -144,16 +171,21 @@ void Map_Show(){
 	area[y][x] = temp;
 }
 
-void SidePrint(wstring st) {
-	for (int i=0; i<(int)st.length(); i++){
-		if(usedwidth<width-16 && usedheight<16){
+void SidePrint(wstring st)
+{
+	for (int i=0; i<(int)st.length(); i++)
+	{
+		if(usedwidth<width-16 && usedheight<16)
+		{
 			wcout<<st.at(i);
 			width++;
 		}
-		if(usedwidth==width-16 && usedheight<16){
+		if(usedwidth==width-16 && usedheight<16)
+		{
 			wcout<<endl;
 			width=0;
 		}
+		
 		if(usedheight>=16) wcout<<st.at(i);
 	}
 }
@@ -189,7 +221,8 @@ int main()
 		printf("\033[2J\033[1;0H");
 		cout<<"x: "<<x<<" y: "<<y<<endl;
 		Map_Show();
-		switch(getch()){
+		switch(getch())
+		{
 			case 'w':
 				if(y<99)y++;
 			break;
@@ -208,6 +241,5 @@ int main()
 		}
 	}
     return 0;
-
 }
 

@@ -24,14 +24,14 @@ void MapCreate()
 		for(int i=0; i<100; i++)
 			for(int j=0; j<100; j++)
 			{
-				if(area[i][j]==1)area[i][j]='@';
-				if(area[i][j]==2)area[i][j]='.';
-				if(area[i][j]==3)area[i][j]='*';
-				if(area[i][j]==4)area[i][j]='^';
-				if(area[i][j]==5)area[i][j]='#';
-				if(area[i][j]==6)area[i][j]='!';
-				if(area[i][j]==7)area[i][j]='~';
-				if(area[i][j]==8)area[i][j]='%';
+				if(area[i][j]==1)area[i][j]='@'; //лес
+				if(area[i][j]==2)area[i][j]='.'; //пустыня
+				if(area[i][j]==3)area[i][j]='*'; //джунгли
+				if(area[i][j]==4)area[i][j]='^'; //гора
+				if(area[i][j]==5)area[i][j]='#'; //плато
+				if(area[i][j]==6)area[i][j]='!'; //болото
+				if(area[i][j]==7)area[i][j]='%'; //холм
+				if(area[i][j]==8)area[i][j]='~'; //водоем
 			}
 }
 

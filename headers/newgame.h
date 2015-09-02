@@ -72,7 +72,8 @@ void NewGame()
 		cout << "Cвободные очки: ";
 		for(int i=0; i<stats; i++) cout<< "*";
 		cout<< endl;
-		switch(getch()){
+		switch(getch())
+		{
 			case 'a':
 				if(slot==0 && strength>0)	
 				{

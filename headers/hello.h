@@ -21,7 +21,8 @@ void Hello()
 		if(slot==1)YELLOW
 		cout << "Загрузка" << endl;
 		if(slot==1)RESET
-		switch(getch()){
+		switch(getch())
+		{
 			case 's':
 				if(slot==0)slot++;
 				else slot=0;

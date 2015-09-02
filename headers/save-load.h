@@ -60,7 +60,8 @@ void Load_menu()
 		if (slot==2) YELLOW
 		cout<<"3 "<<char2.name<<": "<<char2.level<<" уровень"<<endl;
 		if (slot==2) RESET
-		switch(getch()){
+		switch(getch())
+		{
 				case 's':
 					if(slot<2)slot++;
 					else slot=0;
@@ -73,7 +74,7 @@ void Load_menu()
 					if(slot>0)	slot--;
 					else slot=2;
 				break;
-			}
+		}
 	}
 }
 
