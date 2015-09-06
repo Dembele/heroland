@@ -107,5 +107,5 @@ void NewGame()
 		level=1;
 		nxp=100;
 		armour = 16;
-		armreduction = armour;
+		armreduction = (armour/(armour+100));
 }

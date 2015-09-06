@@ -54,6 +54,13 @@ string ToStr(int number)
 	return result;
 }
 
+#include "headers/save-load.h"
+#include "headers/mapcreate.h"
+#include "headers/hello.h"
+#include "headers/newgame.h"
+#include "headers/interface.h"
+#include "headers/actions.h"
+
 void levelup()
 {
 	level+=1;
@@ -62,13 +69,6 @@ void levelup()
 	max_hp += 5;
 	hp=max_hp;
 }
-
-#include "headers/save-load.h"
-#include "headers/mapcreate.h"
-#include "headers/hello.h"
-#include "headers/newgame.h"
-#include "headers/interface.h"
-#include "headers/actions.h"
 
 int main()
 {
@@ -156,4 +156,3 @@ int main()
 	}
     return 0;
 }
-

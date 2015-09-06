@@ -17,9 +17,11 @@ void Load_char()
 		ifs >> strength;
 		ifs >> vitality;
 		ifs >> hp;
-		ifs >> max_hp;
+        ifs >> maxHp;
 		ifs >> attack;
 		ifs >> armour;
+		ifs >> regeneration;
+		ifs >> armreduction;
 		for(int i=0;i<101;i++)
 			for(int j=0;j<101; j++)
 				ifs >> area[i][j];
@@ -100,9 +102,11 @@ void SaveGame()
 	ofs << strength << endl;
 	ofs << vitality << endl;
 	ofs << hp << endl;
-	ofs << max_hp << endl;
+    ofs << maxHp << endl;
 	ofs << attack << endl;
 	ofs << armour << endl;
+	ofs << regeneration << endl;
+	ofs << armreduction << endl;
 	for(int i=0;i<101;i++)
 	 for(int j=0;j<101; j++)
 	 {
