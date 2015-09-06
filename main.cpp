@@ -1,3 +1,15 @@
+/* TODO list:
+- enemies
+- battle
+- exp system
+- inventory
+- equiptable items
+- special attacks
+- ranged attacks
+- magic
+- drop
+- craft
+*/
 #include <iostream>
 #include <sys/ioctl.h>
 #include <cstdio>
@@ -42,13 +54,6 @@ string ToStr(int number)
 	return result;
 }
 
-#include "headers/save-load.h"
-#include "headers/mapcreate.h"
-#include "headers/hello.h"
-#include "headers/newgame.h"
-#include "headers/interface.h"
-#include "headers/actions.h"
-
 void levelup()
 {
 	level+=1;
@@ -57,6 +62,13 @@ void levelup()
 	max_hp += 5;
 	hp=max_hp;
 }
+
+#include "headers/save-load.h"
+#include "headers/mapcreate.h"
+#include "headers/hello.h"
+#include "headers/newgame.h"
+#include "headers/interface.h"
+#include "headers/actions.h"
 
 int main()
 {
