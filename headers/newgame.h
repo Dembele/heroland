@@ -42,7 +42,7 @@ void NewGame()
 				if(slot<2)slot++;
 				else slot=0;
 			break;
-			case 'd':
+			case '\n':
 				done=1;
 			break;
 			case 'w':
@@ -105,4 +105,7 @@ void NewGame()
 	printf("\033[2J\033[1;0H");
 		cout<<name<< ", на старте у вас будет Сила: " << strength << " Выносливость: " << vitality << endl;
 		level=1;
+		nxp=100;
+		armour = 16;
+		armreduction = armour;
 }

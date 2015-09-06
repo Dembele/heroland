@@ -27,7 +27,7 @@ void Hello()
 				if(slot==0)slot++;
 				else slot=0;
 			break;
-			case 'd':
+			case '\n':
 				done=1;
 			break;
 			case 'w':

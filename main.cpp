@@ -30,15 +30,14 @@ struct winsize w;
 
 struct character 
 {
-int stats, hp, max_hp, strength, vitality, level, x, y, xp, nxp;
+int stats, hp, max_hp, strength, vitality, level, x, y, xp, nxp, attack, armour;
 char name[100], area[101][101];
 } char0, char1, char2;
 
-int stats, hp, max_hp, strength, vitality, level, x, y, xp, nxp;
+int stats, hp, max_hp, strength, vitality, level, x, y, xp, nxp, attack, armour, armreduction;
 char name[100], area[101][101];
 
-int ask, slot, temp;
-int height, width, usedwidth, usedheight;
+int slot, temp, done, height, width, usedwidth, usedheight, saveslot;
 
 int randomizer(int i)
 {
@@ -46,160 +45,29 @@ int randomizer(int i)
 	return token = rand() % i + 1;
 }
 
+string ToStr(int number)
+{
+	string result;
+	ostringstream convert;
+	convert << number;
+	result = convert.str();
+	return result;
+}
+
 #include "headers/save-load.h"
 #include "headers/mapcreate.h"
 #include "headers/hello.h"
 #include "headers/newgame.h"
-
-
+#include "headers/interface.h"
+#include "headers/actions.h"
 
 void levelup()
 {
 	level+=1;
-	nxp=(char2.nxp*120)/100;
+	nxp=(nxp*120)/100;
 	stats+=3;
-}
-
-void Map_Show()
-{	
-	temp = area[y][x];
-	area[y][x] = 'X';
-	if (x > 14 && y > 7 && x < 86 && y < 93)
-	{							//центр
-		for (int i = y + 7; i != y - 7; i--)
-		{
-			cout.width(width-30);
-			cout<<right;												// i = вверх/вниз у
-			for (int j = x - 15; j != x + 15; j++)
-			{					// j = вправо/влево х
-				cout << area[i][j];
-			}
-			cout << endl;
-		}
-	}
-	if (x <= 14 && y <= 7)
-	{											//нижний левый угол
-		for (int i = 13; i >= 0; i--)
-		{
-			cout.width(width-30);
-			cout<<right;	
-			for (int j = 0; j <= 30; j++)
-			{
-				cout << area[i][j];
-			}
-			cout << endl;
-		}
-	}
-	if (x <= 14 && y > 7 && y < 93)
-	{								// центр слева
-		for (int i = y+7; i != y-7; i--)
-		{
-			cout.width(width-30);
-			cout<<right;	
-			for (int j = 0; j != 30; j++)
-			{
-				cout << area[i][j];
-			}
-			cout << endl;
-		}
-	}
-	if (x <= 14 && y >= 93)
-	{										// верх слева угол
-		for (int i = 100; i != 86; i--)
-		{
-			cout.width(width-30);
-			cout<<right;	
-			for (int j = 0; j != 30; j++)
-			{
-				cout << area[i][j];
-			}
-			cout << endl;
-		}
-	}
-	if (x > 14 && y >= 93 && x<86)
-	{								//верх центр
-		for (int i = 100; i != 86; i--)
-		{
-			cout.width(width-30);
-			cout<<right;		
-			for (int j = x - 15; j != x + 15; j++)
-			{
-				cout << area[i][j];
-			}
-			cout << endl;
-		}
-	}
-	if (x >= 86 && y >= 93){											//верх справа угол
-		for (int i = 100; i != 86; i--)
-		{
-			cout.width(width-30);
-			cout<<right;	
-			for (int j = 70; j <= 100; j++)
-			{
-				cout << area[i][j];
-			}
-			cout << endl;
-		}
-	}
-	if (x >= 86 && y < 93 && y>7)
-	{									//центр справа
-		for (int i = y+7; i != y-7; i--)
-		{
-			cout.width(width-30);
-			cout<<right;	
-			for (int j = 70; j <= 100; j++)
-			{
-				cout << area[i][j];
-			}
-			cout << endl;
-		}
-	}
-	if (x >= 86 && y <= 7)
-	{											//низ справа угол
-		for (int i = 13; i >= 0; i--)
-		{
-			cout.width(width-30);
-			cout<<right;	
-			for (int j = 70; j <= 100; j++)
-			{
-				cout << area[i][j];
-			}
-			cout << endl;
-		}
-	}
-	if (x > 14 && y <= 7 && x<86)
-	{											//низ центр
-		for (int i = 13; i >= 0; i--)
-		{
-			cout.width(width-30);
-			cout<<right;	
-			for (int j = x-15; j != x+15; j++)
-			{
-				cout << area[i][j];
-			}
-			cout << endl;
-		}
-	}
-	area[y][x] = temp;
-}
-
-void SidePrint(wstring st)
-{
-	for (int i=0; i<(int)st.length(); i++)
-	{
-		if(usedwidth<width-16 && usedheight<16)
-		{
-			wcout<<st.at(i);
-			width++;
-		}
-		if(usedwidth==width-16 && usedheight<16)
-		{
-			wcout<<endl;
-			width=0;
-		}
-		
-		if(usedheight>=16) wcout<<st.at(i);
-	}
+	max_hp += 5;
+	hp=max_hp;
 }
 
 int main()
@@ -234,6 +102,8 @@ int main()
 		printf("\033[2J\033[1;0H");
 		cout<<"x: "<<x<<" y: "<<y<<endl;
 		Map_Show();
+		actions();
+		DrawBotBar();
 		switch(getch())
 		{
 			case 'w':
@@ -249,27 +119,32 @@ int main()
 				if(x<99)x++;
 			break;
 			case 'm':
-				switch(getch())
+				done=0;
+				printf("\033[1;0H");
+				for(int i=0;i<height-2;i++)cout<<endl;
+				while(done!=1)
 				{
-					int done=0;
-					while(done!=1)
+					cout<<"\r";
+					if(slot==0)YELLOW cout<<"Сохранить   ";	if(slot==0)RESET
+					if(slot==1)YELLOW cout<<"Загрузка   "; 	if(slot==1)RESET
+					if(slot==2)YELLOW cout<<"Отмена"; 		if(slot==2)RESET
+					switch(getch())
 					{
-						case 'w':
+						case 'a':
 							if(slot==0)slot=3;
-							else slot++;
-						break;
-						case 's':
-							if(slot==3)slot=0;
 							else slot--;
 						break;
 						case 'd':
-							
+							if(slot==3)slot=0;
+							else slot++;
 						break;
-						case 's':
+						case '\n':
 							done=1;
 						break;
 					}
 				}
+				if (slot==0)SaveGame();
+				if (slot==1)Load_menu();
 			break;
 			case 'l':
 				Load_menu();

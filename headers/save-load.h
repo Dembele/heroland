@@ -18,9 +18,12 @@ void Load_char()
 		ifs >> vitality;
 		ifs >> hp;
 		ifs >> max_hp;
+		ifs >> attack;
+		ifs >> armour;
 		for(int i=0;i<101;i++)
 			for(int j=0;j<101; j++)
 				ifs >> area[i][j];
+	slot=0;
 }
 
 void Load_menu()
@@ -47,10 +50,10 @@ void Load_menu()
 	}
 	else strcpy(char2.name,"Пусто");
 	int done=0;
+	slot=0;
 	while(done==0)
 	{
 		printf("\033[2J\033[1;0H");
-		slot=0;
 		cout<<"Выберете слот для загрузки"<<endl;
 		if (slot==0) YELLOW
 		cout<<"1 "<<char0.name<<": "<<char0.level<<" уровень"<<endl;
@@ -64,16 +67,16 @@ void Load_menu()
 		switch(getch())
 		{
 				case 's':
-					if(slot<2)slot++;
-					else slot=0;
+					if(slot==2)slot=0;
+					else slot++;
 				break;
-				case 'd':
+				case '\n':
 					done=1;
 					Load_char();
 				break;
 				case 'w':
-					if(slot>0)	slot--;
-					else slot=2;
+					if(slot==0) slot=2;
+					else slot--;
 				break;
 		}
 	}
@@ -98,6 +101,8 @@ void SaveGame()
 	ofs << vitality << endl;
 	ofs << hp << endl;
 	ofs << max_hp << endl;
+	ofs << attack << endl;
+	ofs << armour << endl;
 	for(int i=0;i<101;i++)
 	 for(int j=0;j<101; j++)
 	 {
