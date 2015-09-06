@@ -1,3 +1,15 @@
+/* TODO list:
+- enemies
+- battle
+- exp system
+- inventory
+- equiptable items
+- special attacks
+- ranged attacks
+- magic
+- drop
+- craft
+*/
 #include <iostream>
 #include <sys/ioctl.h>
 #include <cstdio>
